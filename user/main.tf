@@ -1,6 +1,8 @@
 resource "aws_iam_user" "user" {
   count = "${length(var.user_names)}"
   name  = "${element(var.user_names, count.index)}"
+  path  = "${var.user_path}"
+  force_destroy = "${var.force_destroy}"
 }
 
 resource "aws_iam_user_login_profile" "user_login" {

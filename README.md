@@ -109,7 +109,9 @@ Add a role that can be attached to codedeploy deployment groups
 
 ### Available variables:
 * [`user_names`]: List(required): List of users that needs to be created
-* [`php_key`]: String(required): Either a base-64 encoded PGP public key, or a keybase username in the form keybase:username
+* [`pgp_key`]: String(required): Either a base-64 encoded PGP public key, or a keybase username in the form keybase:username
+* [`user_path`]: String(optional): Set the path of the entity (default is "/")
+* [`force_destroy`]: String(optional): Destroy the user if set to "true" (default is "false")
 
 ### Output
 * [`unique_id`]: The unique ID assigned by AWS
