@@ -109,6 +109,8 @@ Add a role that can be attached to codedeploy deployment groups
 
 ### Available variables:
 * [`user_names`]: List(required): List of users that needs to be created
+  * A list member is a map that must have the key 'name'
+  * A list member map may also set 'pgp_key', 'user_path', 'force_destroy', 'password_reset_required' (default is "true")
 * [`pgp_key`]: String(required): Either a base-64 encoded PGP public key, or a keybase username in the form keybase:username
 * [`user_path`]: String(optional): Set the path of the entity (default is "/")
 * [`force_destroy`]: String(optional): Destroy the user if set to "true" (default is "false")
@@ -122,8 +124,14 @@ Add a role that can be attached to codedeploy deployment groups
 ```
 module "iam_users" {
   source = "github.com/skyscrapers/terraform-iam//user"
-  user_names = ["user1", "user2", "user3"]
+  user_names = [
+    {name = "user1"},
+    {name = "user2", user_path = "/ops/"},
+    {name = "user3", pgp_key = "keybase:user3"}
+  ]
   pgp_key = "keybase:user"
+  force_destroy = "true"
+  user_path = "/dev/"
 }
 ```
 
