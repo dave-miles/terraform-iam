@@ -6,7 +6,7 @@ resource "aws_iam_user" "user" {
       "name"
     )
   }"
-  user_path  = "${
+  path  = "${
     lookup(
       var.user_names[count.index],
       "user_path",
